@@ -1,0 +1,136 @@
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.73-b02 mixed mode):
+
+"DestroyJavaVM" #21 prio=5 os_prio=0 tid=0x0000000001ef8000 nid=0x35e4 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Thread-7" #20 prio=5 os_prio=0 tid=0x000000001d2a8000 nid=0x34c4 waiting for monitor entry [0x000000001f0bf000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-6" #19 prio=5 os_prio=0 tid=0x000000001d2a5000 nid=0x3460 waiting for monitor entry [0x000000001ed3f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-5" #18 prio=5 os_prio=0 tid=0x000000001d2a4800 nid=0x371c waiting for monitor entry [0x000000001ee5f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-1" #14 prio=5 os_prio=0 tid=0x000000001d2a3800 nid=0x3234 waiting for monitor entry [0x000000001ebdf000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.DummyThreadTwo.run(DummyThreadTwo.java:26)
+        - waiting to lock <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+        - locked <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-4" #17 prio=5 os_prio=0 tid=0x000000001d2a3000 nid=0x3740 waiting for monitor entry [0x000000001db5f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-3" #16 prio=5 os_prio=0 tid=0x000000001d2a2000 nid=0x376c waiting for monitor entry [0x000000001ea7f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-2" #15 prio=5 os_prio=0 tid=0x000000001d29f000 nid=0x373c waiting for monitor entry [0x000000001dd5f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+
+"Thread-0" #13 prio=5 os_prio=0 tid=0x000000001d29e000 nid=0x3790 waiting for monitor entry [0x000000001e89f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.epam.achapouskaya.thread.DummyThreadOne.run(DummyThreadOne.java:26)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+        - locked <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+
+"Service Thread" #12 daemon prio=9 os_prio=0 tid=0x000000001d265800 nid=0x3480 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread2" #11 daemon prio=9 os_prio=2 tid=0x000000001d1d5800 nid=0x3470 waiting on condition [0x0000000000000000]
+
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #10 daemon prio=9 os_prio=2 tid=0x000000001d1d4800 nid=0x34c0 waiting on condition [0x0000000000000000]
+
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #9 daemon prio=9 os_prio=2 tid=0x000000001d1d7800 nid=0x3774 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Command Reader" #8 daemon prio=10 os_prio=0 tid=0x000000001d1c3000 nid=0x3474 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Event Helper Thread" #7 daemon prio=10 os_prio=0 tid=0x000000001d1bf000 nid=0x374c runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Transport Listener: dt_socket" #6 daemon prio=10 os_prio=0 tid=0x000000001d1ba800 nid=0x34b4 runnable [0x0000000000000
+000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x000000001d1b0800 nid=0x3778 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x000000001bc87800 nid=0x214c runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x000000001bc28000 nid=0x2b9c in Object.wait() [0x000000001d1af000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076b207110> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+        - locked <0x000000076b207110> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+        at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x000000001bc21000 nid=0x375c in Object.wait() [0x000000001ce4f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076b206b50> (a java.lang.ref.Reference$Lock)
+        at java.lang.Object.wait(Object.java:502)
+        at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:157)
+        - locked <0x000000076b206b50> (a java.lang.ref.Reference$Lock)
+
+"VM Thread" os_prio=2 tid=0x000000001bc1a000 nid=0x257c runnable
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x0000000001f0d800 nid=0x345c runnable
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x0000000001f0f000 nid=0x2a24 runnable
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x0000000001f10800 nid=0x1b78 runnable
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x0000000001f12000 nid=0x299c runnable
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001d290800 nid=0x3458 waiting on condition
+
+JNI global references: 1185
+
+
+Found one Java-level deadlock:
+=============================
+"Thread-7":
+  waiting to lock monitor 0x000000001bc27b48 (object 0x000000076b276090, a com.epam.achapouskaya.resource.Resource),
+  which is held by "Thread-1"
+"Thread-1":
+  waiting to lock monitor 0x000000001bc279e8 (object 0x000000076b276050, a com.epam.achapouskaya.resource.Resource),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting to lock monitor 0x000000001bc27b48 (object 0x000000076b276090, a com.epam.achapouskaya.resource.Resource),
+  which is held by "Thread-1"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-7":
+        at com.epam.achapouskaya.thread.SimpleThread.run(SimpleThread.java:18)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+"Thread-1":
+        at com.epam.achapouskaya.thread.DummyThreadTwo.run(DummyThreadTwo.java:26)
+        - waiting to lock <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+        - locked <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+"Thread-0":
+        at com.epam.achapouskaya.thread.DummyThreadOne.run(DummyThreadOne.java:26)
+        - waiting to lock <0x000000076b276090> (a com.epam.achapouskaya.resource.Resource)
+        - locked <0x000000076b276050> (a com.epam.achapouskaya.resource.Resource)
+
+Found 1 deadlock.

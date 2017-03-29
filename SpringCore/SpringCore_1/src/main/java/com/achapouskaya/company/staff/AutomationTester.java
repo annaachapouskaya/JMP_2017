@@ -29,7 +29,8 @@ public class AutomationTester extends Employee {
 
 	@Override
 	public String toString() {
-		return "AutomationTester [language=" + language + ", framework=" + framework + "]";
+		return super.toString()
+				+ "AutomationTester [language=" + language + ", framework=" + framework + "]";
 	}
 	
 	

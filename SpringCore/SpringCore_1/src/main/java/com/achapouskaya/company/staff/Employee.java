@@ -1,6 +1,9 @@
 package com.achapouskaya.company.staff;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 import com.achapouskaya.company.staff.skillmatrix.JobFunction;
@@ -10,7 +13,6 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -1151523942528068575L;
 	
-	private String id;
 	private String name;
 	private JobFunction jobFunction;
 	private Date birthDate;
@@ -22,14 +24,18 @@ public class Employee implements Serializable {
 		super();
 	}
 	
-	public String getId() {
-		return id;
+	public void hire() {
+		this.age = this.calculateAge();
+		if (this.englishLevel == null) {
+			this.englishLevel = LanguageLevel.UNDEFINED;
+		}
+		System.out.println("Employee " + this.name + " was hired");
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void fire() {
+		System.out.println("Employee " + this.name + " was fired");
 	}
-	
+		
 	public String getName() {
 		return name;
 	}
@@ -76,10 +82,18 @@ public class Employee implements Serializable {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	
+	public int calculateAge() {
+		LocalDate today = LocalDate.now();
+		LocalDate localBirthDate =  this.birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+		 
+		Period agePeriod = Period.between(localBirthDate, today);
+		return agePeriod.getYears();
+	}
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", jobFunction=" + jobFunction + ", birthDate=" + birthDate
+		return "Employee [name=" + name + ", jobFunction=" + jobFunction + ", birthDate=" + birthDate
 				+ ", age=" + age + ", englishLevel=" + englishLevel + ", level=" + level + "]";
 	}
 }

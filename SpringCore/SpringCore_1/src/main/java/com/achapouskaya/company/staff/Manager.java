@@ -40,7 +40,8 @@ public class Manager extends Employee {
 
 	@Override
 	public String toString() {
-		return "Manager [type=" + type + ", employees=" + employees + ", projectName=" + projectName + "]";
+		return super.toString() 
+				+ "Manager [type=" + type + ", employees=" + employees + ", projectName=" + projectName + "]";
 	}
 
 }

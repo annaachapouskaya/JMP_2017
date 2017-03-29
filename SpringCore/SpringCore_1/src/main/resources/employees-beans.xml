@@ -1,17 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-       xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 
 
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-       <!-- for Ex_1_Map_Injection-->
-       <bean id="simpleEmployee" class="com.achapouskaya.company.staff.Employee">
-              <property name="name" value="Petja"/>
-       </bean>
+	<!-- For working with dates -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+	
+	<bean id="employeeFactory" class="com.achapouskaya.company.EmployeeFactory" />
 
+	<bean id="juniorJavaDev" factory-bean="employeeFactory" factory-method="createSoftwareEngineer"
+		init-method="hire" destroy-method="fire">
+		<property name="name" value="Petja" />
+		<property name="mainLanguage" value="Java" />
+		<property name="level" value="1" />
+		<property name="birthDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+	        	<constructor-arg value="1991-08-12" />
+	      	</bean>
+		</property>
+		<property name="jobFunction">
+			<value type="com.achapouskaya.company.staff.skillmatrix.JobFunction">SOFTWARE_ENGINEERING</value>		</property>
+		<property name="frameworksExpirence">
+			<map>
+				<entry key="Spring" value="3" />
+				<entry key="Hibernate" value="2" />
+				<entry key="Mockito" value="1" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="seniorJavaDev" factory-bean="employeeFactory" factory-method="createSoftwareEngineer"
+		init-method="hire" destroy-method="fire">
+		<property name="name" value="Vasya" />
+		<property name="mainLanguage" value="Java" />
+		<property name="level" value="2" />
+		<property name="birthDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+	        	<constructor-arg value="1976-01-19" />
+	      	</bean>
+		</property>
+		<property name="jobFunction">
+			<value type="com.achapouskaya.company.staff.skillmatrix.JobFunction">SOFTWARE_ENGINEERING</value>
+		</property>
+		<property name="englishLevel">
+			<value type="com.achapouskaya.company.staff.skillmatrix.LanguageLevel">B2</value>
+		</property>
+		<property name="frameworksExpirence">
+			<map>
+				<entry key="Spring" value="7" />
+				<entry key="Hibernate" value="6" />
+				<entry key="Mockito" value="5" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="autoTester1" factory-bean="employeeFactory" factory-method="createAutomationTester"
+		init-method="hire" destroy-method="fire">
+		<property name="name" value="Alena" />
+		<property name="language" value="Java" />
+		<property name="level" value="3" />
+		<property name="birthDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+	        	<constructor-arg value="1988-06-19" />
+	      	</bean>
+		</property>
+		<property name="jobFunction">
+			<value type="com.achapouskaya.company.staff.skillmatrix.JobFunction">TESTING</value>
+		</property>
+		<property name="englishLevel">
+			<value type="com.achapouskaya.company.staff.skillmatrix.LanguageLevel">C1</value>
+		</property>
+		<property name="framework" value="someTestingFramework"/>
+	</bean>
+	
+	<bean id="bigManager" factory-bean="employeeFactory" factory-method="createManager"
+		init-method="hire" destroy-method="fire">
+		<property name="name" value="Totoshka" />
+		<property name="level" value="4" />
+		<property name="birthDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+	        	<constructor-arg value="1988-06-19" />
+	      	</bean>
+		</property>
+		<property name="jobFunction">
+			<value type="com.achapouskaya.company.staff.skillmatrix.JobFunction">MANAGEMENT</value>
+		</property>
+		<property name="englishLevel">
+			<value type="com.achapouskaya.company.staff.skillmatrix.LanguageLevel">C1</value>
+		</property>
+		<property name="type" value="PM"/>
+		<property name="employees">
+			<set>
+				<ref bean="autoTester1"/>
+				<ref bean="seniorJavaDev"/>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="employeeStatistic" class="com.achapouskaya.company.service.SpringEmployeesStatisticImpl"
+		init-method="init" lazy-init="true"/>
+	
+ 
 </beans>

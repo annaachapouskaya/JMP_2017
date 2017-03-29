@@ -22,7 +22,8 @@ public class ManualTester extends Employee {
 
 	@Override
 	public String toString() {
-		return "ManualTester [expertise=" + expertise + "]";
+		return super.toString()
+				+ "ManualTester [expertise=" + expertise + "]";
 	}
 	
 	

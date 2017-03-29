@@ -2,7 +2,9 @@ package com.achapouskaya.company.staff;
 
 import java.util.Map;
 
-public class SoftwareEngineer {
+public class SoftwareEngineer extends Employee {
+
+	private static final long serialVersionUID = 12298262987588467L;
 	
 	private String mainLanguage;
 	private Map<String, Integer> frameworksExpirence;
@@ -29,6 +31,10 @@ public class SoftwareEngineer {
 
 	@Override
 	public String toString() {
-		return "SoftwareEngineer [mainLanguage=" + mainLanguage + ", frameworksExpirence=" + frameworksExpirence + "]";
+		return super.toString()
+				+ " SoftwareEngineer [mainLanguage=" + mainLanguage + ", frameworksExpirence="
+				+ frameworksExpirence + "]";
 	}
+
+	
 }

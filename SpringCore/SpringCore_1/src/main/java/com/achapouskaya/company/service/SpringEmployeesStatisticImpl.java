@@ -25,9 +25,9 @@ public class SpringEmployeesStatisticImpl extends IEmployeeStatistic implements 
 		
 	}
 
-	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		this.context = context;		
+	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+		this.context = arg0;		
 	}
+
 
 }

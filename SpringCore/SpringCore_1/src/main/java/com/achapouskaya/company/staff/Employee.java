@@ -13,12 +13,13 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -1151523942528068575L;
 	
+	private String id;
 	private String name;
 	private JobFunction jobFunction;
 	private Date birthDate;
 	private int age;
 	private LanguageLevel englishLevel;
-	private int level;
+	private int careerLevel;
 	
 	public Employee() {
 		super();
@@ -76,13 +77,22 @@ public class Employee implements Serializable {
 	}
 
 	public int getLevel() {
-		return level;
+		return careerLevel;
 	}
 
 	public void setLevel(int level) {
-		this.level = level;
+		this.careerLevel = level;
 	}
 	
+		
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public int calculateAge() {
 		LocalDate today = LocalDate.now();
 		LocalDate localBirthDate =  this.birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
@@ -93,7 +103,10 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", jobFunction=" + jobFunction + ", birthDate=" + birthDate
-				+ ", age=" + age + ", englishLevel=" + englishLevel + ", level=" + level + "]";
+		return "Employee [id=" + id + ", name=" + name + ", jobFunction=" + jobFunction + ", birthDate=" + birthDate
+				+ ", age=" + age + ", englishLevel=" + englishLevel + ", level=" + careerLevel + "]";
 	}
+
+	
+
 }

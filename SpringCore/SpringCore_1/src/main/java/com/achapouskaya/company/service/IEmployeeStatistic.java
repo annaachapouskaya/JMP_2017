@@ -10,6 +10,7 @@ public abstract class IEmployeeStatistic {
 
 	private Map<String, Employee> allEmployees;
 	
+
 	private int averageAge;
 	private Map <LanguageLevel, Integer> employeesNumbByEngLevel; 
 	

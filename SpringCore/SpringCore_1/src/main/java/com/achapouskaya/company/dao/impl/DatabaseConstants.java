@@ -12,6 +12,11 @@ public class DatabaseConstants {
 	public static String ENGLISH_LEVEL_FIELD_NAME = "ENGLISH_LEVEL";
 	public static String CAREER_LEVEL_FIELD_NAME = "CAREER_LEVEL";
 	
+	//**Automation tester table
+	public static String AUTOMATION_TESTER_TABLE_NAME = "AUTOMATION_TESTER";
+	public static String FRAMEWORK_FIELD_NAME = "FRAMEWORK";
+	public static String LANGUAGE_FIELD_NAME = "LANGUAGE";
+	
 	
 
 }

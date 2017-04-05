@@ -3,17 +3,21 @@ package com.achapouskaya.company.dao.impl.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import com.achapouskaya.company.dao.impl.DatabaseConstants;
 import com.achapouskaya.company.staff.AutomationTester;
 import com.achapouskaya.company.staff.Employee;
 
-public class AutomationTesterRowMapper implements RowMapper<AutomationTester> {
+public class AutomationTesterRowMapper implements CommonRowMapper<AutomationTester> {
+	
+	private EmployeeRowMapper employeeRowMapper;
+	
+	public void setEmployeeRowMapper(EmployeeRowMapper employeeRowMapper) {
+		this.employeeRowMapper = employeeRowMapper;
+	}
 
 	public AutomationTester mapRow(ResultSet rs, int arg1) throws SQLException {
-		EmployeeRowMapper employeeRowMapper = new EmployeeRowMapper();
 		Employee employee = employeeRowMapper.mapRow(rs, arg1);
 		AutomationTester autoTester = new AutomationTester();
 		
@@ -31,10 +35,11 @@ public class AutomationTesterRowMapper implements RowMapper<AutomationTester> {
 		return autoTester;
 	}
 	
-	public MapSqlParameterSource prepareAutomationTesterParameters(AutomationTester tester) {
-		return new MapSqlParameterSource(DatabaseConstants.ID_FIELD_NAME, tester.getId())
-				.addValue(DatabaseConstants.FRAMEWORK_FIELD_NAME, tester.getFramework())
-				.addValue(DatabaseConstants.LANGUAGE_FIELD_NAME, tester.getLanguage());
+	public MapSqlParameterSource prepareEmployeeParameters(AutomationTester tester) {
+		MapSqlParameterSource params = employeeRowMapper.prepareEmployeeParameters(tester);
+		params.addValue(DatabaseConstants.FRAMEWORK_FIELD_NAME, tester.getFramework())
+			  .addValue(DatabaseConstants.LANGUAGE_FIELD_NAME, tester.getLanguage());
+		return params;
 	}
 
 }

@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.achapouskaya.company.dao.IAutomationTesterDAO;
-import com.achapouskaya.company.dao.impl.rowmapper.AutomationTesterRowMapper;
+import com.achapouskaya.company.dao.AutomationTesterDAO;
 import com.achapouskaya.company.staff.AutomationTester;
 
-public class SpringAutomationTesterDAO extends SpringCommonDAO implements IAutomationTesterDAO {
+public class SpringAutomationTesterDAO extends SpringEmployeeDAO<AutomationTester> implements AutomationTesterDAO {
 	
 	private static String CREATE_AUTO_TESTER_SQL = "INSERT INTO AUTOMATION_TESTER (ID, FRAMEWORK, LANGUAGE)"
 			+ " VALUES (:ID, :FRAMEWORK, :LANGUAGE)";
@@ -28,40 +27,29 @@ public class SpringAutomationTesterDAO extends SpringCommonDAO implements IAutom
 	private static String UPDATE_AUTOTESTER_SQL = "UPDATE AUTOMATION_TESTER SET FRAMEWORK=:FRAMEWORK,"
 			+ " LANGUAGE=:LANGUAGE WHERE ID=:ID";
 			
-	private SpringEmployeeDAO employeeDAO;
-	private AutomationTesterRowMapper autoTesterRowMapper;
-		
-	public SpringAutomationTesterDAO() {
-		super();
-		this.autoTesterRowMapper = new AutomationTesterRowMapper();
-	}
-
-	public void setEmployeeDAO(SpringEmployeeDAO employeeDAO) {
-		this.employeeDAO = employeeDAO;
-	}
-
+	
 	@Transactional
 	public String create(AutomationTester employee) {
-		employee.setId(employeeDAO.create(employee));
-		MapSqlParameterSource namedParameters = this.autoTesterRowMapper.prepareAutomationTesterParameters(employee);
+		employee.setId(super.create(employee));
+		MapSqlParameterSource namedParameters = this.employeeRowMapper.prepareEmployeeParameters(employee);
 		this.namedParameterJdbcTemplate.update(CREATE_AUTO_TESTER_SQL, namedParameters);
 		return employee.getId();
 	}
 
 	public AutomationTester get(String id) {
 		return (AutomationTester) this.jdbcTemplate.queryForObject(GET_AUTOTESTER_BY_ID_SQL,
-				new Object[] { id }, autoTesterRowMapper);
+				new Object[] { id }, employeeRowMapper);
 	}
 
 	public List<AutomationTester> getAll() {
-		return jdbcTemplate.query(GET_ALL_AUTOTESTERS_SQL, autoTesterRowMapper);
+		return jdbcTemplate.query(GET_ALL_AUTOTESTERS_SQL, employeeRowMapper);
 	}
 
 	@Transactional
 	public boolean update(AutomationTester employee) {
-		boolean employeeUpdated = employeeDAO.update(employee);
+		boolean employeeUpdated = super.update(employee);
 		
-		MapSqlParameterSource namedParameters = this.autoTesterRowMapper.prepareAutomationTesterParameters(employee);
+		MapSqlParameterSource namedParameters = this.employeeRowMapper.prepareEmployeeParameters(employee);
 		int numberOfUpdated = this.namedParameterJdbcTemplate.update(UPDATE_AUTOTESTER_SQL, namedParameters);
 		if (numberOfUpdated == 1 && employeeUpdated) {
 			return true;
@@ -73,7 +61,7 @@ public class SpringAutomationTesterDAO extends SpringCommonDAO implements IAutom
 	//Cascade delete is on
 	@Transactional
 	public boolean delete(String id) {
-		boolean employeeDeleted = this.employeeDAO.delete(id);
+		boolean employeeDeleted = super.delete(id);
 		this.jdbcTemplate.update(DELETE_AUTOTESTER_SQL, new Object[] { id });
 		return employeeDeleted;
 	}

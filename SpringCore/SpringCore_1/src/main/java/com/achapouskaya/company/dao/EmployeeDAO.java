@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.achapouskaya.company.staff.Employee;
 
-public interface IEmployeeDAO<Entity extends Employee> {
+public interface EmployeeDAO<Entity extends Employee> {
 	
 	public String create(Entity employee); 
 	public Entity get(String id);

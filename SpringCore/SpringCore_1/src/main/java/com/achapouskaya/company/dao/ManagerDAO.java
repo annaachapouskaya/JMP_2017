@@ -2,6 +2,6 @@ package com.achapouskaya.company.dao;
 
 import com.achapouskaya.company.staff.Manager;
 
-public interface IManagerDAO extends IEmployeeDAO<Manager> {
+public interface ManagerDAO extends EmployeeDAO<Manager> {
 
 }

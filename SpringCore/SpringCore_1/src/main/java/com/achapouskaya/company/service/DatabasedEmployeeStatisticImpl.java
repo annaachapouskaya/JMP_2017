@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.achapouskaya.company.dao.IEmployeeDAO;
+import com.achapouskaya.company.dao.EmployeeDAO;
 import com.achapouskaya.company.staff.Employee;
 
 public class DatabasedEmployeeStatisticImpl extends IEmployeeStatistic {
 	
-	private IEmployeeDAO<Employee> employeeDAO;
+	private EmployeeDAO<Employee> employeeDAO;
 
 	
-	public IEmployeeDAO<Employee> getEmployeeDAO() {
+	public EmployeeDAO<Employee> getEmployeeDAO() {
 		return employeeDAO;
 	}
 
-	public void setEmployeeDAO(IEmployeeDAO<Employee> employeeDAO) {
+	public void setEmployeeDAO(EmployeeDAO<Employee> employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
 

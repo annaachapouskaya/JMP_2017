@@ -3,7 +3,6 @@ package com.achapouskaya.company.dao.impl.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import com.achapouskaya.company.dao.impl.DatabaseConstants;
@@ -11,7 +10,7 @@ import com.achapouskaya.company.staff.Employee;
 import com.achapouskaya.company.staff.skillmatrix.LanguageLevel;
 import com.achapouskaya.company.staff.skillmatrix.JobFunction;
 
-public class EmployeeRowMapper implements RowMapper<Employee> {
+public class EmployeeRowMapper implements CommonRowMapper<Employee> {
 
 	public Employee mapRow(ResultSet rs, int arg1) throws SQLException {
 		Employee employee = new Employee();

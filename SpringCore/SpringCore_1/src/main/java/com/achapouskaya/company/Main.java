@@ -3,14 +3,18 @@ package com.achapouskaya.company;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.achapouskaya.company.dao.IAutomationTesterDAO;
-import com.achapouskaya.company.dao.IEmployeeDAO;
+import com.achapouskaya.company.dao.AutomationTesterDAO;
+import com.achapouskaya.company.dao.EmployeeDAO;
+import com.achapouskaya.company.dao.ManagerDAO;
 import com.achapouskaya.company.staff.AutomationTester;
 import com.achapouskaya.company.staff.Employee;
+import com.achapouskaya.company.staff.Manager;
 import com.achapouskaya.company.staff.skillmatrix.JobFunction;
 import com.achapouskaya.company.staff.skillmatrix.LanguageLevel;
 
@@ -25,12 +29,11 @@ public class Main {
 		System.out.println(context.getBean("employeeStatistic"));*/
 		
 		System.out.println("TEST DAO: ");
-		IEmployeeDAO<Employee> employeeDAO = (IEmployeeDAO<Employee>)context.getBean("employeeDAO");
+		EmployeeDAO<Employee> employeeDAO = (EmployeeDAO<Employee>)context.getBean("employeeDAO");
 		System.out.println(employeeDAO.getAll());
 		System.out.println("Employee getall");
 		
-		employeeDAO.delete("testEmp1");
-		
+	
 		Employee newEmployee = new Employee();
 		newEmployee.setAge(23);
 		newEmployee.setBirthDate(new GregorianCalendar(1990, Calendar.FEBRUARY, 11).getTime());
@@ -48,8 +51,6 @@ public class Main {
 		
 		System.out.println(employeeDAO.get("testEmp1"));
 		
-		employeeDAO.delete("testEmp1");
-		
 		AutomationTester autotester = new AutomationTester();
 		autotester.setAge(23);
 		autotester.setBirthDate(new GregorianCalendar(1993, Calendar.SEPTEMBER, 11).getTime());
@@ -62,16 +63,45 @@ public class Main {
 		autotester.setFramework("testingOnRails");
 		autotester.setLanguage("Ruby");
 		
-		IAutomationTesterDAO automationTesterDAO = (IAutomationTesterDAO) context.getBean("automationTesterDAO");
+		AutomationTesterDAO automationTesterDAO = (AutomationTesterDAO) context.getBean("automationTesterDAO");
 		automationTesterDAO.create(autotester);
 		System.out.println(automationTesterDAO.getAll());
 		autotester.setFramework("BrandNewFramework");
 		automationTesterDAO.update(autotester);
 		System.out.println(automationTesterDAO.get(autotester.getId()));
-		automationTesterDAO.delete(autotester.getId());
 		
+		//MANAGER
+		Manager manager = new Manager();
+		manager.setAge(23);
+		manager.setBirthDate(new GregorianCalendar(1993, Calendar.SEPTEMBER, 11).getTime());
+		manager.setEnglishLevel(LanguageLevel.C1);
+		manager.setId("1546");
+		manager.setJobFunction(JobFunction.MANAGEMENT);
+		manager.setLevel(2);
+		manager.setName("ManagerName");
+		
+		manager.setType("PM");
+		manager.setProjectName("MAILO");
+		
+		Set<Employee> managersGuys = new HashSet<Employee>();
+		managersGuys.add(autotester);
+		managersGuys.add(newEmployee);
+		
+		manager.setEmployees(managersGuys);
+		
+		ManagerDAO managerDAO = (ManagerDAO) context.getBean("managerDAO");
+		managerDAO.create(manager);
+		System.out.println(managerDAO.getAll());
+		manager.setType("RM");
+		managerDAO.update(manager);
+		System.out.println(managerDAO.get(manager.getId()));
+		managerDAO.delete(manager.getId());
+	
 		
 		System.out.println("Employee statistic: " + context.getBean("employeeStatistic"));
+		
+		employeeDAO.delete("testEmp1");
+		automationTesterDAO.delete(autotester.getId());
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
 		//((ClassPathXmlApplicationContext) context).close();
 	}

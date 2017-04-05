@@ -82,23 +82,23 @@ public class SpringManagerDAO extends SpringEmployeeDAO<Manager> implements Mana
 		List<String> newEmployeesIds = new ArrayList<String>();
 		for (Employee newEmployee : manager.getEmployees()) {
 			newEmployeesIds.add(newEmployee.getId());
-			if (!currentEmployees.contains(newEmployee)) {
+			if (!currentEmployees.contains(newEmployee.getId())) {
 				this.jdbcTemplate.update(CONNECT_MANAGER_WITH_EMPLOYEE_SQL, 
-						new Object[] { newEmployee, manager.getId()});
+						new Object[] { manager.getId(), newEmployee.getId()});
 			}
 		}
 		for (String currentEmployee : currentEmployees) {
 			if (!newEmployeesIds.contains(currentEmployee)) {
 				this.jdbcTemplate.update(DELETE_EMPLOYEE_FROM_MANAGER_SQL, 
-						new Object[] { currentEmployee, manager.getId()});
+						new Object[] { manager.getId(), currentEmployee});
 			}
 		}
 	}
 
 	public boolean delete(String id) {
 		boolean employeeDeleted = super.delete(id);
-		this.jdbcTemplate.update(DELETE_MANAGER_SQL, new Object[] { id });
 		this.jdbcTemplate.update(DELETE_MANAGER_CONN_SQL, new Object[] { id });
+		this.jdbcTemplate.update(DELETE_MANAGER_SQL, new Object[] { id });
 		return employeeDeleted;
 	}
 

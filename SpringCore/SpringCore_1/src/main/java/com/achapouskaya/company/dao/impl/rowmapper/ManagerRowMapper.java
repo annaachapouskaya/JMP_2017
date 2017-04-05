@@ -1,7 +1,10 @@
 package com.achapouskaya.company.dao.impl.rowmapper;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -24,7 +27,7 @@ public class ManagerRowMapper implements CommonRowMapper<Manager> {
 	public Manager mapRow(ResultSet rs, int arg1) throws SQLException {
 		Employee employee = employeeRowMapper.mapRow(rs, arg1);
 		Manager manager = new Manager();
-		
+				
 		manager.setAge(employee.getAge());
 		manager.setBirthDate(employee.getBirthDate());
 		manager.setEnglishLevel(employee.getEnglishLevel());
@@ -33,9 +36,20 @@ public class ManagerRowMapper implements CommonRowMapper<Manager> {
 		manager.setLevel(employee.getLevel());
 		manager.setName(employee.getName());
 		
-		manager.setProjectName(rs.getString(DatabaseConstants.PROJECT_NAME_FIELD_NAME));
-		manager.setType(rs.getString(DatabaseConstants.TYPE_FIED_NAME));
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columnCount = rsmd.getColumnCount();
+		List<String> columnsNames = new ArrayList<String>(columnCount);
+		for (int i = 1; i <= columnCount; i++ ) {
+			columnsNames.add(rsmd.getColumnName(i));
+		}
 		
+		if (columnsNames.contains(DatabaseConstants.PROJECT_NAME_FIELD_NAME)) {
+			manager.setProjectName(rs.getString(DatabaseConstants.PROJECT_NAME_FIELD_NAME));
+		}
+		if (columnsNames.contains(DatabaseConstants.TYPE_FIED_NAME)) {
+			manager.setType(rs.getString(DatabaseConstants.TYPE_FIED_NAME));
+		}
+	
 		return manager;
 	}
 

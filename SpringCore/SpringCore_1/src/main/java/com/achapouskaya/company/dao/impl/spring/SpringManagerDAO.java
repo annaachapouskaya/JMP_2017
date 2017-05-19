@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.achapouskaya.company.dao.ManagerDAO;
 import com.achapouskaya.company.staff.Employee;
@@ -95,6 +96,7 @@ public class SpringManagerDAO extends SpringEmployeeDAO<Manager> implements Mana
 		}
 	}
 
+	@Transactional
 	public boolean delete(String id) {
 		boolean employeeDeleted = super.delete(id);
 		this.jdbcTemplate.update(DELETE_MANAGER_CONN_SQL, new Object[] { id });

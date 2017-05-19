@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+   
+<tiles-definitions>
+
+   <definition name="baseLayout" template="/jsp/layouts/baseLayout.jsp">
+      <put-attribute name="title"  value="Template"/>
+      <put-attribute name="header" value="/jsp/includes/common/header.jsp"/>
+      <put-attribute name="menu"   value="/jsp/includes/common/menu.jsp"/>
+      <put-attribute name="body"   value="/jsp/includes/body.jsp"/>
+      <put-attribute name="footer"   value="/jsp/includes/common/footer.jsp"/>
+   </definition>
+
+   <definition name="homepage" extends="baseLayout">
+      <put-attribute name="title"  value="Welcome to our animal shelter Friendly paw!"/>
+      <put-attribute name="body"   value="/jsp/includes/homepageContent.jsp"/>      
+   </definition>
+   
+   <definition name="dogs" extends="baseLayout">
+      <put-attribute name="title"  value="Dogs of a Friendly paw!"/>
+      <put-attribute name="body"   value="/jsp/includes/listAllDogsContent.jsp"/>      
+   </definition>
+
+	<definition name="addDog" extends="baseLayout">
+      <put-attribute name="title"  value="Add a new dog"/>
+      <put-attribute name="body"   value="/jsp/includes/addDogContent.jsp"/>      
+   </definition>
+  
+   <definition name="login" extends="baseLayout">
+      <put-attribute name="title"  value="Login"/>
+      <put-attribute name="body"   value="/jsp/includes/loginContent.jsp"/>      
+   </definition>
+   
+   <definition name="birds" extends="baseLayout">
+      <put-attribute name="title"  value="Birds of a Friendly paw!"/>
+      <put-attribute name="body"   value="/jsp/includes/listAllBirdsContent.jsp"/>      
+   </definition>
+
+	<definition name="addBird" extends="baseLayout">
+      <put-attribute name="title"  value="Add a new bird"/>
+      <put-attribute name="body"   value="/jsp/includes/addBirdContent.jsp"/>      
+   </definition>
+   
+   <definition name="cats" extends="baseLayout">
+      <put-attribute name="title"  value="Cats of a Friendly paw!"/>
+      <put-attribute name="body"   value="/jsp/includes/listAllCatsContent.jsp"/>      
+   </definition>
+
+	<definition name="addCat" extends="baseLayout">
+      <put-attribute name="title"  value="Add a new cats"/>
+      <put-attribute name="body"   value="/jsp/includes/addCatContent.jsp"/>      
+   </definition>
+</tiles-definitions>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<!-- Scans the classpath for annotated components that will be auto-registered 
+		as Spring beans. For example @Controller and @Service. Make sure to set the 
+		correct base-package -->
+	<context:component-scan base-package="com.epam.achapouskaya" />
+
+	<!-- Configures the annotation-driven Spring MVC Controller programming 
+		model. Note that, with Spring 3.0, this tag works in Servlet MVC only! -->
+	<mvc:annotation-driven />
+
+	<bean id="dogDao" class="com.epam.achapouskaya.dao.impl.DummyDogDAOImpl"
+		init-method="init">
+	</bean>
+
+	<bean id="dogService" class="com.epam.achapouskaya.service.impl.DogServiceImpl">
+		<property name="dogDAO">
+			<ref bean="dogDao" />
+		</property>
+	</bean>
+	
+	<bean id="birdDao" class="com.epam.achapouskaya.dao.impl.DummyBirdDAOImpl"
+		init-method="init">
+	</bean>
+
+	<bean id="birdService" class="com.epam.achapouskaya.service.impl.BirdServiceImpl">
+		<property name="birdDAO">
+			<ref bean="birdDao" />
+		</property>
+	</bean>
+	
+	<bean id="catDao" class="com.epam.achapouskaya.dao.impl.DummyCatDAOImpl"
+		init-method="init">
+	</bean>
+
+	<bean id="catService" class="com.epam.achapouskaya.service.impl.CatServiceImpl">
+		<property name="catDAO">
+			<ref bean="catDao" />
+		</property>
+	</bean>
+</beans>

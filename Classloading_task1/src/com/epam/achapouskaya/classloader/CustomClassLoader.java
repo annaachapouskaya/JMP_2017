@@ -16,7 +16,7 @@ public class CustomClassLoader extends ClassLoader {
 	@Override
 	public Class<?> loadClass(String name) throws ClassNotFoundException {
 		System.out.println("Starting loading class " + name);
-
+		
 		Class<?> c = findLoadedClass(name);
 			
 		if (c == null) {

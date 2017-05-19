@@ -19,7 +19,7 @@ public class Employee implements Serializable{
 	@XmlElement( required = true )
 	private String name;
 	
-	@XmlElement( required = false )
+	@XmlElement( required = true )
 	private int salary;
 	
 	public Employee() {

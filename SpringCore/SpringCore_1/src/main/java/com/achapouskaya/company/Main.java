@@ -17,16 +17,15 @@ import com.achapouskaya.company.staff.Employee;
 import com.achapouskaya.company.staff.Manager;
 import com.achapouskaya.company.staff.skillmatrix.JobFunction;
 import com.achapouskaya.company.staff.skillmatrix.LanguageLevel;
+import com.achapouskaya.mock.ExportDataToXML;
 
 
 public class Main {
 
-	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-jdbc-beans.xml");
+	public static void main(String[] args) throws Exception {
+		//ExportDataToXML.exportDatabase();
 		
-		/*System.out.println(context.getBean("juniorJavaDev"));
-		System.out.println(context.getBean("bigManager"));
-		System.out.println(context.getBean("employeeStatistic"));*/
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-jdbc-beans.xml");
 		
 		System.out.println("TEST DAO: ");
 		EmployeeDAO<Employee> employeeDAO = (EmployeeDAO<Employee>)context.getBean("employeeDAO");
@@ -95,13 +94,15 @@ public class Main {
 		manager.setType("RM");
 		managerDAO.update(manager);
 		System.out.println(managerDAO.get(manager.getId()));
-		managerDAO.delete(manager.getId());
-	
+
 		
 		System.out.println("Employee statistic: " + context.getBean("employeeStatistic"));
 		
-		employeeDAO.delete("testEmp1");
-		automationTesterDAO.delete(autotester.getId());
+		ExportDataToXML.exportDatabase();
+		
+		//managerDAO.delete(manager.getId());
+		//employeeDAO.delete("testEmp1");
+		//automationTesterDAO.delete(autotester.getId());
 		((ClassPathXmlApplicationContext) context).registerShutdownHook();
 		//((ClassPathXmlApplicationContext) context).close();
 	}

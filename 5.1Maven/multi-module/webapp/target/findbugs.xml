@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.0.1' threshold='low' effort='max'><Error></Error><Project><SrcDir>C:\Users\Anna_Achapouskaya\git\classloading\5.1Maven\multi-module\webapp\src\main\java</SrcDir><SrcDir>C:\Users\Anna_Achapouskaya\git\classloading\5.1Maven\multi-module\webapp\src\test\java</SrcDir></Project></BugCollection>

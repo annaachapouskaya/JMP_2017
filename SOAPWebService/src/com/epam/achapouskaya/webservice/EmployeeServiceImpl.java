@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 
 import com.epam.achapouskaya.error.EmployeeCreatingException;
 import com.epam.achapouskaya.model.Employee;
 
 @WebService(endpointInterface = "com.epam.achapouskaya.webservice.EmployeeService")
+@SOAPBinding(style=SOAPBinding.Style.RPC)
 public class EmployeeServiceImpl implements EmployeeService {
 	private static Map<String, Employee> employees = new HashMap<String, Employee>();
 

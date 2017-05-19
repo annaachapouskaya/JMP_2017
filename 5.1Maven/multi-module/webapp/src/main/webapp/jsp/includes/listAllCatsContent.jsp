@@ -10,7 +10,7 @@
 			<p><b>Age: </b>${cat.age}</p>
 			<p><b>Character: </b>${cat.character}</p>
 			<p><b>History: </b>${cat.history}</p>
-			<p><b>Wool length: </b>${cat.history}</p>
+			<p><b>Wool length: </b>${cat.woolLength}</p>
 			<hr/>
 		</div>
 	</c:forEach>

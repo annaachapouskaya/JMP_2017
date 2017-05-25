@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd 
 		http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
 
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
@@ -20,28 +21,20 @@
 		model. Note that, with Spring 3.0, this tag works in Servlet MVC only! -->
 	<mvc:annotation-driven />
 
-	<bean id="dogDao" class="com.epam.achapouskaya.dao.impl.DummyDogDAOImpl"
-		init-method="init">
-	</bean>
-
 	<bean id="dogService" class="com.epam.achapouskaya.service.impl.DogServiceImpl">
 		<property name="dogDAO">
 			<ref bean="dogDao" />
 		</property>
 	</bean>
 	
-	<bean id="birdDao" class="com.epam.achapouskaya.dao.impl.DummyBirdDAOImpl"
+	<!-- <bean id="birdDao" class="com.epam.achapouskaya.dao.impl.DummyBirdDAOImpl"
 		init-method="init">
-	</bean>
+	</bean>-->
 
 	<bean id="birdService" class="com.epam.achapouskaya.service.impl.BirdServiceImpl">
 		<property name="birdDAO">
 			<ref bean="birdDao" />
 		</property>
-	</bean>
-	
-	<bean id="catDao" class="com.epam.achapouskaya.dao.impl.DummyCatDAOImpl"
-		init-method="init">
 	</bean>
 
 	<bean id="catService" class="com.epam.achapouskaya.service.impl.CatServiceImpl">
@@ -49,4 +42,7 @@
 			<ref bean="catDao" />
 		</property>
 	</bean>
+	
+	<import resource="classpath*:spring-hibernate-beans.xml" />
+	
 </beans>

@@ -18,8 +18,9 @@ public class BirdServiceImpl implements BirdService {
 		this.birdDAO = birdDAO;
 	}
 
-	public String create(Bird pet) {
-		return birdDAO.create(pet);
+	public Bird create(Bird pet) {
+		pet.setId(birdDAO.create(pet));
+		return pet;
 	}
 
 	public Bird get(Bird pet) {
@@ -30,7 +31,7 @@ public class BirdServiceImpl implements BirdService {
 		return birdDAO.getAll();
 	}
 
-	public boolean update(Bird pet) {
+	public Bird update(Bird pet) {
 		return birdDAO.update(pet);
 	}
 

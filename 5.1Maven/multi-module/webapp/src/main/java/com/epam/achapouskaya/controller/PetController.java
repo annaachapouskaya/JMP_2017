@@ -1,9 +1,12 @@
 package com.epam.achapouskaya.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.epam.achapouskaya.model.Bird;
 import com.epam.achapouskaya.model.Cat;
 import com.epam.achapouskaya.model.Dog;
+import com.epam.achapouskaya.model.WoolLength;
 import com.epam.achapouskaya.service.BirdService;
 import com.epam.achapouskaya.service.CatService;
 import com.epam.achapouskaya.service.DogService;
@@ -69,7 +73,7 @@ public class PetController {
 	}
 	
 	@RequestMapping(path = "/dogs/add", method = RequestMethod.POST)
-	public String saveDog(@ModelAttribute("dog") Dog dog, ModelMap model) {
+	public String saveDog(@ModelAttribute("dog") @Valid Dog dog, BindingResult result, ModelMap model) {
 		System.out.print("Add dog page");
 		System.out.print(this.dogService.create(dog));
 		model.addAttribute("dogs", this.dogService.getAll());
@@ -106,7 +110,9 @@ public class PetController {
 
 	@RequestMapping(value = "/cats/add", method = RequestMethod.GET)
 	public ModelAndView addCat() {
-		return new ModelAndView("addCat", "command", new Cat());
+		ModelAndView model = new ModelAndView("addCat", "command", new Cat());
+		model.addObject("woolLengthTypes", WoolLength.values());
+		return model;
 	}
 	
 	@RequestMapping(path = "/cats/add", method = RequestMethod.POST)

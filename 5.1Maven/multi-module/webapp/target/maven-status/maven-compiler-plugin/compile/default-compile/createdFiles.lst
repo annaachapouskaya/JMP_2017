@@ -1,2 +1,3 @@
-com\epam\achapouskaya\controller\HelloController.class
+com\epam\achapouskaya\controller\MainController.class
+com\epam\achapouskaya\controller\PetController.class
 com\epam\achapouskaya\SimpleServlet.class

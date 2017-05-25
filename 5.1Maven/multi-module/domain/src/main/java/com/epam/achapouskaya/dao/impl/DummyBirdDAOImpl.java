@@ -10,15 +10,15 @@ import com.epam.achapouskaya.model.Bird;
 
 
 public class DummyBirdDAOImpl implements BirdDAO {
-	private static Map<String, Bird> birds;
+	private static Map<Long, Bird> birds;
 	
 	public static void init() {
-		birds = new HashMap<String, Bird>();
+		birds = new HashMap<Long, Bird>();
 		Bird bird1 = new Bird();
 		bird1.setAge(2);
 		bird1.setBreed("Pigeotto");
 		bird1.setHistory("It' a pokemon bird");
-		bird1.setId("bird1751");
+		bird1.setId(123);
 		bird1.setName("Koko");
 		bird1.setSex(true);
 		bird1.setSinging(true);
@@ -27,7 +27,7 @@ public class DummyBirdDAOImpl implements BirdDAO {
 		bird2.setAge(3);
 		bird2.setBreed("Duck");
 		bird2.setHistory("A duck from Svicloch");
-		bird2.setId("bird1753");
+		bird2.setId(1234);
 		bird2.setName("Utkative");
 		bird2.setSex(false);
 		bird2.setSinging(false);
@@ -37,13 +37,13 @@ public class DummyBirdDAOImpl implements BirdDAO {
 		birds.put(bird2.getId(), bird2);
 	}
 
-	public String create(Bird pet) {
-		pet.setId("bird" + System.currentTimeMillis());
+	public long create(Bird pet) {
+		pet.setId(System.currentTimeMillis());
 		birds.put(pet.getId(), pet);
 		return pet.getId();
 	}
 
-	public Bird get(String id) {
+	public Bird get(long id) {
 		return birds.get(id);
 	}
 
@@ -51,16 +51,12 @@ public class DummyBirdDAOImpl implements BirdDAO {
 		return new ArrayList<Bird>(birds.values());
 	}
 
-	public boolean update(Bird pet) {
-		if (birds.get(pet.getId()) != null) {
-			birds.put(pet.getId(), pet);
-			return true;
-		} else {
-			return false;
-		}
+	public Bird update(Bird pet) {
+		birds.put(pet.getId(), pet);
+		return pet;
 	}
 
-	public boolean delete(String id) {
+	public boolean delete(long id) {
 		if (birds.remove(id) != null) {
 			return true;
 		} else {

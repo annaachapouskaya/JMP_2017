@@ -18,8 +18,9 @@ private CatDAO catDAO;
 		this.catDAO = catDAO;
 	}
 
-	public String create(Cat pet) {
-		return catDAO.create(pet);
+	public Cat create(Cat pet) {
+		pet.setId(catDAO.create(pet));
+		return pet;
 	}
 
 	public Cat get(Cat pet) {
@@ -30,7 +31,7 @@ private CatDAO catDAO;
 		return catDAO.getAll();
 	}
 
-	public boolean update(Cat pet) {
+	public Cat update(Cat pet) {
 		return catDAO.update(pet);
 	}
 

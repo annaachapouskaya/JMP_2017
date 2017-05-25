@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="removeAbandoned" value="true" />
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="30" />
+	</bean>
+
+	<context:property-placeholder location="classpath*:database.properties" />
+
+	<!-- Hibernate 3 Annotation SessionFactory Bean definition -->
+	<bean id="hibernate3AnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.epam.achapouskaya.model.Bird</value>
+				<value>com.epam.achapouskaya.model.Cat</value>
+				<value>com.epam.achapouskaya.model.Dog</value>
+				<value>com.epam.achapouskaya.model.Pet</value>
+				<value>com.epam.achapouskaya.model.WoolLength</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--  <bean id="personDAO" class="com.journaldev.dao.PersonDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean> -->
+	
+    <context:annotation-config/>
+    
+    <bean
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+        id="entityManagerFactory">
+        <property name="dataSource" ref="dataSource" />
+        <property name="persistenceXmlLocation" value="classpath*:persistence.xml"/>
+    </bean>
+    
+    <bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+             <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+	
+	<bean id="birdDao" class="com.epam.achapouskaya.dao.impl.hibernate.HibernateBirdDAOImpl">
+	</bean>
+	
+	<bean id="catDao" class="com.epam.achapouskaya.dao.impl.hibernate.HibernateCatDAOImpl">
+	</bean>
+	
+	<bean id="dogDao" class="com.epam.achapouskaya.dao.impl.hibernate.HibernateDogDAOImpl">
+	</bean>
+	
+	<tx:annotation-driven/>
+
+</beans>

@@ -10,26 +10,25 @@ import com.epam.achapouskaya.model.Cat;
 import com.epam.achapouskaya.model.WoolLength;
 
 public class DummyCatDAOImpl implements CatDAO {
-	
-	private static Map<String, Cat> cats;
-	
+
+	private static Map<Long, Cat> cats;
+
 	public static void init() {
-		cats = new HashMap<String, Cat>();
-		Cat cat1 = new Cat("cat1", "Vasya", 6, "Was found near vine shop in Minsk", false, WoolLength.MEDIUM, "unknown",
+		cats = new HashMap<Long, Cat>();
+		Cat cat1 = new Cat(456, "Vasya", 6, "Was found near vine shop in Minsk", false, WoolLength.MEDIUM, "unknown",
 				"playful");
-		Cat cat2 = new Cat("cat2", "Alisa", 3, "Young cat lady", true, WoolLength.LONG, "persian",
-				"high-minded");
+		Cat cat2 = new Cat(789, "Alisa", 3, "Young cat lady", true, WoolLength.LONG, "persian", "high-minded");
 		cats.put(cat1.getId(), cat1);
 		cats.put(cat2.getId(), cat2);
 	}
 
-	public String create(Cat pet) {
-		pet.setId("cat" + System.currentTimeMillis());
+	public long create(Cat pet) {
+		pet.setId(System.currentTimeMillis());
 		cats.put(pet.getId(), pet);
 		return pet.getId();
 	}
 
-	public Cat get(String id) {
+	public Cat get(long id) {
 		return cats.get(id);
 	}
 
@@ -37,16 +36,12 @@ public class DummyCatDAOImpl implements CatDAO {
 		return new ArrayList<Cat>(cats.values());
 	}
 
-	public boolean update(Cat pet) {
-		if (cats.get(pet.getId()) != null) {
-			cats.put(pet.getId(), pet);
-			return true;
-		} else {
-			return false;
-		}
+	public Cat update(Cat pet) {
+		cats.put(pet.getId(), pet);
+		return pet;
 	}
 
-	public boolean delete(String id) {
+	public boolean delete(long id) {
 		if (cats.remove(id) != null) {
 			return true;
 		} else {

@@ -9,16 +9,16 @@ import com.epam.achapouskaya.dao.DogDAO;
 import com.epam.achapouskaya.model.Dog;
 
 public class DummyDogDAOImpl implements DogDAO {
-	private static Map<String, Dog> dogs;
+	private static Map<Long, Dog> dogs;
 	
 	public static void init() {
-		dogs = new HashMap<String, Dog>();
+		dogs = new HashMap<Long, Dog>();
 		Dog dog1 = new Dog();
 		dog1.setAge(10);
 		dog1.setBreed("unlnown");
 		dog1.setCharacter("Charmy");
 		dog1.setHistory("Some dog history");
-		dog1.setId("dog517");
+		dog1.setId(987);
 		dog1.setName("Ravchik");
 		dog1.setSex(false);
 		
@@ -27,7 +27,7 @@ public class DummyDogDAOImpl implements DogDAO {
 		dog2.setBreed("Shibu Inu");
 		dog2.setCharacter("Angry");
 		dog2.setHistory("He is like Hatiko");
-		dog2.setId("dog1743");
+		dog2.setId(5678);
 		dog2.setName("Klaus");
 		dog2.setSex(false);
 
@@ -36,13 +36,13 @@ public class DummyDogDAOImpl implements DogDAO {
 	}
 
 
-	public String create(Dog pet) {
-		pet.setId("dog" + System.currentTimeMillis());
+	public long create(Dog pet) {
+		pet.setId(System.currentTimeMillis());
 		dogs.put(pet.getId(), pet);
 		return pet.getId();
 	}
 
-	public Dog get(String id) {
+	public Dog get(long id) {
 		return dogs.get(id);
 	}
 
@@ -50,16 +50,12 @@ public class DummyDogDAOImpl implements DogDAO {
 		return new ArrayList<Dog>(dogs.values());
 	}
 
-	public boolean update(Dog pet) {
-		if (dogs.get(pet.getId()) != null) {
-			dogs.put(pet.getId(), pet);
-			return true;
-		} else {
-			return false;
-		}
+	public Dog update(Dog pet) {
+		dogs.put(pet.getId(), pet);
+		return pet;
 	}
 
-	public boolean delete(String id) {
+	public boolean delete(long id) {
 		if (dogs.remove(id) != null) {
 			return true;
 		} else {

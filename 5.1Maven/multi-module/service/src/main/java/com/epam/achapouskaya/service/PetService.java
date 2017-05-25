@@ -6,10 +6,10 @@ import com.epam.achapouskaya.model.Pet;
 
 public interface PetService <Entity extends Pet> {
 	
-	public String create(Entity pet);
+	public Entity create(Entity pet);
 	public Entity get(Entity pet);
 	public List<Entity> getAll();
-	public boolean update(Entity pet);
+	public Entity update(Entity pet);
 	public boolean delete(Entity pet);	
 
 

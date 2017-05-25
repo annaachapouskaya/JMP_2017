@@ -2,21 +2,53 @@ package com.epam.achapouskaya.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "PET")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
 public class Pet implements Serializable{
 
 	private static final long serialVersionUID = -2736203029123445127L;
 	
-	private String id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
+	@Column(name = "NAME")
+	@NotEmpty(message = "Please enter name")
+	@Size(min = 2, max = 20, message = "Please enter valid name")
 	private String name;
+	
+	@Column(name = "AGE")
+	@NotNull
 	private int age;
+	
+	@Column(name = "HISTORY")
 	private String history;
+	
+	@Column(name = "SEX")
+	@NotNull
 	private boolean sex;
 	
 	public Pet() {
 		super();
 	}
 
-	public Pet(String id, String name, int age, String history, boolean sex) {
+	public Pet(long id, String name, int age, String history, boolean sex) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,11 +57,11 @@ public class Pet implements Serializable{
 		this.sex = sex;
 	}
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -64,7 +96,5 @@ public class Pet implements Serializable{
 	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
-	
-	
 	
 }

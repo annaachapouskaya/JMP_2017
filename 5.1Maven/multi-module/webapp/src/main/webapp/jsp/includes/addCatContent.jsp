@@ -19,7 +19,11 @@
 			</tr>
 			<tr>
 				<td><form:label path="woolLength">woolLength: </form:label></td>
-				<td><form:input path="woolLength" /></td>
+				<td>
+					<form:select path="woolLength">
+					    <form:options items="${woolLengthTypes}"/>
+					</form:select>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="age">Age: </form:label></td>

@@ -6,10 +6,10 @@ import com.epam.achapouskaya.model.Pet;
 
 public interface PetDAO<Entity extends Pet> {
 	
-	public String create(Entity pet);
-	public Entity get(String id);
+	public long create(Entity pet);
+	public Entity get(long id);
 	public List<Entity> getAll();
-	public boolean update(Entity pet);
-	public boolean delete(String id);	
+	public Entity update(Entity pet);
+	public boolean delete(long id);	
 
 }

@@ -124,6 +124,18 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.1.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>5.0.1.Final</version>
+		 </dependency>
 	</dependencies>
 	<modules>
 		<module>domain</module>
@@ -143,7 +155,7 @@
 						you run out of memory, changes the value of the effort element to 'Low'. -->
 					<effort>Max</effort>
 					<!-- Build doesn't fail if problems are found -->
-					<failOnError>true</failOnError>
+					<failOnError>false</failOnError>
 					<!-- Reports all bugs (other values are medium and max) -->
 					<threshold>Low</threshold>
 					<!-- Produces XML report -->

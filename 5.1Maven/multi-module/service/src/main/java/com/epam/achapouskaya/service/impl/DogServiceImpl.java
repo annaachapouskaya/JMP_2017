@@ -18,8 +18,9 @@ public class DogServiceImpl implements DogService {
 		this.dogDAO = dogDAO;
 	}
 
-	public String create(Dog pet) {
-		return dogDAO.create(pet);
+	public Dog create(Dog pet) {
+		pet.setId(dogDAO.create(pet));
+		return pet;
 	}
 
 	public Dog get(Dog pet) {
@@ -30,7 +31,7 @@ public class DogServiceImpl implements DogService {
 		return dogDAO.getAll();
 	}
 
-	public boolean update(Dog pet) {
+	public Dog update(Dog pet) {
 		return dogDAO.update(pet);
 	}
 

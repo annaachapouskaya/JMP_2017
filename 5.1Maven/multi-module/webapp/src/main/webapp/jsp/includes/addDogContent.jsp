@@ -8,6 +8,7 @@
 			<tr>
 				<td><form:label path="name">Name: </form:label></td>
 				<td><form:input path="name" /></td>
+				<td><form:errors path="name" cssClass="error"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="breed">Breed: </form:label></td>

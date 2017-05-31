@@ -19,7 +19,9 @@ private CatDAO catDAO;
 	}
 
 	public Cat create(Cat pet) {
-		pet.setId(catDAO.create(pet));
+		if (pet != null) {
+			pet.setId(catDAO.create(pet));
+		}
 		return pet;
 	}
 
@@ -32,11 +34,17 @@ private CatDAO catDAO;
 	}
 
 	public Cat update(Cat pet) {
-		return catDAO.update(pet);
+		if (pet != null) {
+			pet = catDAO.update(pet);
+		}
+		return pet;
 	}
 
 	public boolean delete(Cat pet) {
-		return catDAO.delete(pet.getId());
+		if (pet != null) {
+			return catDAO.delete(pet.getId());
+		}
+		return false;
 	}
 
 

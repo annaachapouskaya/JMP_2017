@@ -19,7 +19,9 @@ public class DogServiceImpl implements DogService {
 	}
 
 	public Dog create(Dog pet) {
-		pet.setId(dogDAO.create(pet));
+		if (pet != null) {
+			pet.setId(dogDAO.create(pet));
+		}
 		return pet;
 	}
 
@@ -32,11 +34,17 @@ public class DogServiceImpl implements DogService {
 	}
 
 	public Dog update(Dog pet) {
-		return dogDAO.update(pet);
+		if (pet != null) {
+			pet = dogDAO.update(pet);
+		}
+		return pet;
 	}
 
 	public boolean delete(Dog pet) {
-		return dogDAO.delete(pet.getId());
+		if (pet != null) {
+			return dogDAO.delete(pet.getId());
+		}
+		return false;
 	}
 
 }

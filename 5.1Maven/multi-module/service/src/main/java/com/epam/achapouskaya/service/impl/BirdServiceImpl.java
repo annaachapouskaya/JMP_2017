@@ -19,7 +19,9 @@ public class BirdServiceImpl implements BirdService {
 	}
 
 	public Bird create(Bird pet) {
-		pet.setId(birdDAO.create(pet));
+		if (pet != null) {
+			pet.setId(birdDAO.create(pet));
+		}
 		return pet;
 	}
 
@@ -32,11 +34,17 @@ public class BirdServiceImpl implements BirdService {
 	}
 
 	public Bird update(Bird pet) {
-		return birdDAO.update(pet);
+		if (pet != null) {
+			pet = birdDAO.update(pet);
+		}
+		return pet;
 	}
 
 	public boolean delete(Bird pet) {
-		return birdDAO.delete(pet.getId());
+		if (pet != null) {
+			return birdDAO.delete(pet.getId());
+		}
+		return false;
 	}
 
 }

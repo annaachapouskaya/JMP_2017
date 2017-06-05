@@ -1,0 +1,1 @@
+SET JAVA_HOME=%~dp0jdk1.7_79\

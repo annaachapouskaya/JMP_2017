@@ -1,9 +1,9 @@
-com\epam\achapouskaya\service\DogService.class
-com\epam\achapouskaya\service\BirdService.class
-com\epam\achapouskaya\service\CatService.class
-com\epam\achapouskaya\service\impl\CatServiceImpl.class
-com\epam\achapouskaya\service\impl\DogServiceImpl.class
 com\epam\achapouskaya\service\PetService.class
+com\epam\achapouskaya\service\BirdService.class
+com\epam\achapouskaya\service\impl\CatServiceImpl.class
+com\epam\achapouskaya\service\CatService.class
 com\epam\achapouskaya\App.class
-com\epam\achapouskaya\SimpleService.class
+com\epam\achapouskaya\service\impl\DogServiceImpl.class
+com\epam\achapouskaya\service\DogService.class
 com\epam\achapouskaya\service\impl\BirdServiceImpl.class
+com\epam\achapouskaya\SimpleService.class

@@ -1,1 +1,4 @@
+com\epam\achapouskaya\service\impl\DogServiceImplTest.class
 com\epam\achapouskaya\AppTest.class
+com\epam\achapouskaya\service\impl\CatServiceImplTest.class
+com\epam\achapouskaya\service\impl\BirdServiceImplTest.class

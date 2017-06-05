@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -25,7 +26,9 @@ public class Pet implements Serializable{
 	private static final long serialVersionUID = -2736203029123445127L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GenericGenerator(name="gen",strategy="increment")
+    @GeneratedValue(generator="gen")
 	private long id;
 	
 	@Column(name = "NAME")

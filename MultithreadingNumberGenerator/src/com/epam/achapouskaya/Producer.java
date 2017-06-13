@@ -2,14 +2,12 @@ package com.epam.achapouskaya;
 
 import java.util.List;
 
-import com.epam.achapouskaya.impl.syncrohized.NumberGeneratorImpl;
-
 public abstract class Producer {
 	
-	protected NumberGeneratorImpl generator;
+	protected NumberGenerator generator;
 	protected List<Integer> buffer;
 		
-	public Producer(NumberGeneratorImpl generator, List<Integer> buffer) {
+	public Producer(NumberGenerator generator, List<Integer> buffer) {
 		super();
 		this.generator = generator;
 		this.buffer = buffer;

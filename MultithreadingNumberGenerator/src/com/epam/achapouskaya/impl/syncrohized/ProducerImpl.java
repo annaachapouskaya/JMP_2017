@@ -2,17 +2,18 @@ package com.epam.achapouskaya.impl.syncrohized;
 
 import java.util.List;
 
+import com.epam.achapouskaya.NumberGenerator;
 import com.epam.achapouskaya.Producer;
 
 public class ProducerImpl extends Producer implements Runnable {
 
-	public ProducerImpl(NumberGeneratorImpl generator, List<Integer> buffer) {
+	public ProducerImpl(NumberGenerator generator, List<Integer> buffer) {
 		super(generator, buffer);
 	}
 
 	@Override
 	public int produceNumber() {
-		return this.generator.getCount();
+		return this.generator.generateNumber();
 	}
 
 	@Override

@@ -10,6 +10,10 @@ public abstract class Consumer {
 	protected Writer writer;
 	protected File file;
 
+	public Consumer() {
+		super();
+	}
+
 	public Consumer(List<Integer> buffer, Writer writer) {
 		super();
 		this.buffer = buffer;

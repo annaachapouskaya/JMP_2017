@@ -27,7 +27,7 @@ public class ProducerImpl extends Producer implements Runnable {
 				}
 			}
 			try {
-				Thread.sleep(150);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

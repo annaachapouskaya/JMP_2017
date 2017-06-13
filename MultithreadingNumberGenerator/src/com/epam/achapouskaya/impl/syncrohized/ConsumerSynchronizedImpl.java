@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.epam.achapouskaya.Consumer;
 
-public class ConsumerImpl extends Consumer implements Runnable {
+public class ConsumerSynchronizedImpl extends Consumer implements Runnable {
 
 	private boolean isRunning = true;
 
-	public ConsumerImpl(List<Integer> buffer, PrintWriter writer) {
+	public ConsumerSynchronizedImpl(List<Integer> buffer, PrintWriter writer) {
 		super(buffer, writer);
 	}
 
